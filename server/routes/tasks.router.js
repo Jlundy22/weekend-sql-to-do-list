@@ -21,7 +21,8 @@ pool.on('error', (error) => {
 router.get('/', (req, res) => {
   console.log("GET /tasks");
   let queryText = `
-  SELECT * FROM "todo";
+  SELECT * FROM "todo"
+  ORDER BY "id";
   `;
   pool.query(queryText)
   .then((dbResult) => {

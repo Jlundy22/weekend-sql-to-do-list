@@ -2,6 +2,8 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('JQ')
+    $('#addTask').on('click', addTask);
 }
-
-console.log('JS')
+function addTask() {
+    console.log('add task');
+}

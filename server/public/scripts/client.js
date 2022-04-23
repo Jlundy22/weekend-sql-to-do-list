@@ -5,29 +5,21 @@ function onReady() {
     $('#addTask').on('click', addTask);
     getTasks();
     $(document).on('click', '.deleteTask',deleteTask);
-    $(document).on('click', '.completeTask',completeTask);
-}
-function addTask() {
-    console.log('add task');
-    let taskToAdd = $('#inputTask').val();
-    console.log(taskToAdd);
-    $('#inputTask').val('');
 }
 
-function deleteTask() {
-    console.log('delete');
-}
+
+
 function completeTask() {
     console.log('complete');
 }
 
 function getTasks() {
     console.log('in get task');
-    $('#taskTable').empty();
     $.ajax({
         method: 'GET',
         url: '/tasks'
     }).then(function(response) {
+        $('#taskTable').empty();
         console.log('GET /tasks response',response);
         for (let task of response) {
             let taskComplete = 'Incomplete';
@@ -56,8 +48,23 @@ function addTask() {
         method: 'POST',
         url: '/tasks',
         data: taskToAdd
-    }).then(function(reasponse) {
+    }).then(function(response) {
         $('#inputTask').val('');
         getTasks();
+    })
+}
+
+function deleteTask() {
+    console.log('delete');
+    let taskToDelete = $(this).closest('tr').data('id');
+    console.log(taskToDelete);
+
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskToDelete}`
+    }).then(function(response) {
+        getTasks();
+    }).catch(function(error) {
+        console.log(error);
     })
 }

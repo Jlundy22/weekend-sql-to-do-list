@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
   ($1);
   `;
   let sqlValues = [
-    req.body.task
+    req.body.taskToAdd
   ];
   pool.query(sqlQuery, sqlValues)
   .then((dbResult) => {
@@ -56,6 +56,7 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:taskId', (req, res) => {
+  console.log("DELETE /tasks");
   let taskToDelete = req.params.taskId;
   let sqlQuery = `
   DELETE FROM "todo"
@@ -68,6 +69,27 @@ router.delete('/:taskId', (req, res) => {
   })
   .catch((dbError) => {
     console.log('error in DELETE /tasks db request:', dbError);
+    res.sendStatus(500);
+  })
+})
+
+router.put('/:taskId', (req, res) => {
+  console.log('PUT /tasks')
+  let sqlQuery = `
+  UPDATE "todo"
+  SET "isComplete"=$1
+  WHERE "id"=$2;
+  `;
+  let sqlValues = [
+    req.body.taskStatus,
+    req.params.taskId
+  ]
+  pool.query(sqlQuery,sqlValues)
+  .then((dbResult) => {
+    res.sendStatus(200);
+  })
+  .catch((dbError) => {
+    console.log('error in PUT /tasks db request:', dbError);
     res.sendStatus(500);
   })
 })

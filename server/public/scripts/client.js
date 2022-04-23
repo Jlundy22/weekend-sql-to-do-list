@@ -5,12 +5,8 @@ function onReady() {
     $('#addTask').on('click', addTask);
     getTasks();
     $(document).on('click', '.deleteTask',deleteTask);
-}
-
-
-
-function completeTask() {
-    console.log('complete');
+    $(document).on('click', '.completeTask', completeTask);
+    
 }
 
 function getTasks() {
@@ -27,7 +23,7 @@ function getTasks() {
                 taskComplete = 'Complete'
             }
             $('#taskTable').append(`
-            <tr data-id="${task.id}">
+            <tr data-id="${task.id}" data-status="${task.isComplete}">
                 <td>${task.task}</td>
                 <td>${taskComplete}</td>
                 <td> <button class="completeTask">Complete Task</button></td>
@@ -42,12 +38,12 @@ function getTasks() {
 
 function addTask() {
     console.log('add task');
-    let taskToAdd = {task: $('#inputTask').val()};
+    let taskToAdd = $('#inputTask').val()
     console.log(taskToAdd);
     $.ajax({
         method: 'POST',
         url: '/tasks',
-        data: taskToAdd
+        data:{ taskToAdd: taskToAdd}
     }).then(function(response) {
         $('#inputTask').val('');
         getTasks();
@@ -62,6 +58,25 @@ function deleteTask() {
     $.ajax({
         method: 'DELETE',
         url: `/tasks/${taskToDelete}`
+    }).then(function(response) {
+        getTasks();
+    }).catch(function(error) {
+        console.log(error);
+    })
+}
+
+function completeTask() {
+    console.log('complete');
+    let taskToUpdate = $(this).closest('tr').data('id');
+    let taskStatus = $(this).closest('tr').data('status');
+    console.log(taskStatus);
+     taskStatus = !taskStatus;
+     console.log(taskStatus);
+
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskToUpdate}`,
+        data: {taskStatus: taskStatus}
     }).then(function(response) {
         getTasks();
     }).catch(function(error) {

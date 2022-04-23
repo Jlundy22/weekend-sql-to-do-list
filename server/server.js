@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// Require the router object for songs:
-/////////change this!!
-let todoRouter = require('./routes/router');
-///////////
+// Require the router object for tasks:
+
+let todoRouter = require('./routes/tasks.router.js');
+
 
 const app = express();
 
@@ -13,12 +13,11 @@ app.use(bodyParser.json());
 
 app.use(express.static('server/public'));
 
-// Tell express to use the songsRouter for requests to
-// the /songs URL:
+// Tell express to use the todoRouter for requests to
+// the /tasks URL:
 
-//////////CHANGE THIS
-app.use('/todo', todoRouter);
-////////////
+app.use('/tasks', todoRouter);
+
 
 const PORT = 5000;
 app.listen(PORT, () => {

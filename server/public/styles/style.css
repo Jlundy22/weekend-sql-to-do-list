@@ -1,3 +1,17 @@
-body {
-    background-color: aquamarine;
+
+
+.complete {
+    color: green;
+}
+
+.notComplete {
+ 
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.notStrike {
+
 }

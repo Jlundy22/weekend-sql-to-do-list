@@ -47,3 +47,17 @@ function getTasks() {
         console.log(error);
     })
 }
+
+function addTask() {
+    console.log('add task');
+    let taskToAdd = {task: $('#inputTask').val()};
+    console.log(taskToAdd);
+    $.ajax({
+        method: 'POST',
+        url: '/tasks',
+        data: taskToAdd
+    }).then(function(reasponse) {
+        $('#inputTask').val('');
+        getTasks();
+    })
+}

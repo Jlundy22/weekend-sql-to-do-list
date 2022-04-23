@@ -34,4 +34,25 @@ router.get('/', (req, res) => {
   })
 })
 
+router.post('/', (req, res) => {
+  console.log('POST /tasks');
+  console.log('req.body ==>', req.body);
+  let sqlQuery = `
+  INSERT INTO "todo" 
+	("task")
+  VALUES 
+  ($1);
+  `;
+  let sqlValues = [
+    req.body.task
+  ];
+  pool.query(sqlQuery, sqlValues)
+  .then((dbResult) => {
+    res.sendStatus(201);
+  })
+  .catch((dbError) => {
+    console.log('error in POST /tasks db requests', dbError);
+  })
+});
+
 module.exports = router;

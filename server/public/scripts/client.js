@@ -26,18 +26,21 @@ function getTasks() {
             }
             let taskChange;
             let strikeTask;
+            let taskAction;
             if (taskComplete === 'Complete') {
                 taskChange = 'complete'
                 strikeTask = 'strike'
+                taskAction = 'Restart Task'
             } else {
                 taskChange = 'notComplete'
                 strikeTask = 'notStrike'
+                taskAction = 'Complete Task'
             };
             $('#taskTable').append(`
             <tr  data-id="${task.id}" data-status="${task.isComplete}">
                 <td class="${strikeTask}">${task.task}</td>
                 <td class="${taskChange}">${taskComplete}</td>
-                <td> <button class="completeTask">Complete Task</button></td>
+                <td> <button class="completeTask">${taskAction}</button></td>
                 <td> <button class="deleteTask">Delete Task</button></td>
             </tr>
             `);
@@ -51,6 +54,9 @@ function getTasks() {
 function addTask() {
     console.log('add task');
     let taskToAdd = $('#inputTask').val()
+    if (!taskToAdd) {
+        return
+    };
     console.log(taskToAdd);
     $.ajax({
         method: 'POST',

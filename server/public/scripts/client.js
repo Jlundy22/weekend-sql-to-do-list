@@ -40,8 +40,8 @@ function getTasks() {
             <tr  data-id="${task.id}" data-status="${task.isComplete}">
                 <td class="${strikeTask}">${task.task}</td>
                 <td class="${taskChange}">${taskComplete}</td>
-                <td> <button class="completeTask">${taskAction}</button></td>
-                <td> <button class="deleteTask">Delete Task</button></td>
+                <td><button class="completeTask">${taskAction}</button></td>
+                <td><button class="deleteTask">Delete Task</button></td>
             </tr>
             `);
 

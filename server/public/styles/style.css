@@ -28,42 +28,33 @@ table, body{
 }
 
 #inputTask {
-    width: 300px;
+    width: 400px;
     font-size:14pt;
 }
 
  table, td {
     border: 1px solid black;
     border-collapse: collapse;
+    width: 100%;
 }
 button {
     border-radius: 10px;
-    margin-left: 18px;
 }
 
 td, tr {
-    margin-left: 18px;
+    text-align: center;
 }
 
 #addTask:hover, .completeTask:hover {
     color: #050c18ea;
-    border: #0062FF solid 1px;
-    background: #b0e770;
+    border: #444a53 solid 1px;
+    background: #767a72;
     }
 .deleteTask:hover {
     color: #0e1624;
-    border: #0062FF solid 1px;
+    border: #15171a solid 1px;
     background: #be402f;
         }
-
-/* tr:nth-child(even) {
-    background-color: lightgrey;
-
-}
- tr:nth-child(odd) {
-    background-color: white;
-
-} */
 
 html, body, button { 
     background: url("../styles/whitebackground.webp") no-repeat center center fixed; 
@@ -72,12 +63,3 @@ html, body, button {
     -o-background-size: cover;
     background-size: cover;
   }
- 
-  /* button {
-    position: absolute;
-    top:50%;
-    background-color:#0a0a23;
-    color: #fff;
-    border:none;
-    border-radius:10px;
-  } */

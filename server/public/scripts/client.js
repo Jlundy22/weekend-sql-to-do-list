@@ -76,7 +76,7 @@ function addTask() {
 function deleteTask() {
     console.log('delete');
     let taskToDelete = $(this).closest('tr').data('id');
-    console.log(taskToDelete);
+    //console.log(taskToDelete);
 
     $.ajax({
         method: 'DELETE',

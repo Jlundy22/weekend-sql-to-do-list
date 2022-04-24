@@ -1,11 +1,11 @@
-# SQL To-Do List
+# To-Do List
 
 
 ## Description
 
 _Duration: 12 hours_
 
-This is the first full stack app made while attending Prime Digital Academy. This application was built to help orginize your tasks. When you add your task you will see it populate below. Once you have completed the task hitting the 'complete task' button will check off your task. If you accidently 'complete' the wrong task hitting restart task will change the task back to uncomplete. I made this an option for tasks you know you will repeat. The 'Delete Task' button will remove the task completely.
+This is the first full stack app I made while attending Prime Digital Academy. This application was built to help organize your tasks. When you add your task, you will see it populate. Once you have completed the task, hitting the 'complete task' button will check off your task. If you accidently 'complete' the wrong task, hitting 'restart task' will change the task back to incomplete. I made this an option for tasks you know you will repeat or accidently complete. The 'Delete Task' button will remove the task completely.
 
 
 ## Preview

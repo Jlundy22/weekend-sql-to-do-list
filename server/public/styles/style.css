@@ -19,6 +19,7 @@ h1 ,th {
 
 .notStrike {
 
+
 }
 table, body{
     margin-left: auto;
@@ -37,6 +38,12 @@ table, body{
     border-collapse: collapse;
     width: 100%;
 }
+
+#status {
+    text-align: left;
+
+}
+
 button {
     border-radius: 10px;
 }
@@ -56,10 +63,15 @@ td, tr {
     background: #be402f;
         }
 
-html, body, button { 
+html, body { 
     background: url("../styles/whitebackground.webp") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+  }
+
+  table, td, tr {
+    background-color: rgba(116, 113, 113, 0.2);
+    
   }

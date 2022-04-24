@@ -18,6 +18,8 @@ pool.on('error', (error) => {
   console.log('Something with postgresql really broke. It broke hard.', error);
 })
 //////////////////////////////////////////////PG CODE END
+
+//Get the tasks from the database to send back to the client
 router.get('/', (req, res) => {
   console.log("GET /tasks");
   let queryText = `
@@ -26,7 +28,6 @@ router.get('/', (req, res) => {
   `;
   pool.query(queryText)
   .then((dbResult) => {
-    //console.log(dbResult.rows)
     res.send(dbResult.rows)
   })
   .catch((dbError) => {
@@ -34,10 +35,10 @@ router.get('/', (req, res) => {
     res.sendStatus(500)
   })
 })
-
+// sends a new task to the database
 router.post('/', (req, res) => {
   console.log('POST /tasks');
-  console.log('req.body ==>', req.body);
+  //console.log('req.body ==>', req.body);
   let sqlQuery = `
   INSERT INTO "todo" 
 	("task")
@@ -56,6 +57,7 @@ router.post('/', (req, res) => {
   })
 });
 
+//deletes the task from the database
 router.delete('/:taskId', (req, res) => {
   console.log("DELETE /tasks");
   let taskToDelete = req.params.taskId;
@@ -74,6 +76,7 @@ router.delete('/:taskId', (req, res) => {
   })
 })
 
+// updates isComplete in the database to either TRUE or FALSE
 router.put('/:taskId', (req, res) => {
   console.log('PUT /tasks')
   let sqlQuery = `

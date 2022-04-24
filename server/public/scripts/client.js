@@ -1,7 +1,7 @@
 $(document).ready(onReady);
 
 function onReady() {
-    console.log('JQ')
+    //console.log('JQ')
     $('#addTask').on('click', addTask);
     getTasks();
     $(document).on('click', '.deleteTask', deleteTask);
@@ -9,6 +9,8 @@ function onReady() {
 
 }
 
+//Get the list of tasks from the database when the page is loaded
+// or when our POST, DELETE or PUT routes run
 function getTasks() {
     console.log('in get task');
     $.ajax({
@@ -16,7 +18,7 @@ function getTasks() {
         url: '/tasks'
     }).then(function (response) {
         $('#taskTable').empty();
-        console.log('GET /tasks response', response);
+        //console.log('GET /tasks response', response);
         for (let task of response) {
             let taskComplete;
             if (task.isComplete === true) {
@@ -50,14 +52,15 @@ function getTasks() {
         console.log(error);
     })
 }
-
+//Adds the task that was input to the database
+// runs getTasks() after
 function addTask() {
     console.log('add task');
     let taskToAdd = $('#inputTask').val()
     if (!taskToAdd) {
         return
     };
-    console.log(taskToAdd);
+    //console.log(taskToAdd);
     $.ajax({
         method: 'POST',
         url: '/tasks',
@@ -68,6 +71,8 @@ function addTask() {
     })
 }
 
+//Deletes the task tied to the delete button that was pressed
+// runs getTasks() after
 function deleteTask() {
     console.log('delete');
     let taskToDelete = $(this).closest('tr').data('id');
@@ -83,6 +88,11 @@ function deleteTask() {
     })
 }
 
+//When the 'complete task' button is clicked 
+//the button will change to 'restart task'
+//while also crossing out the task and changing 
+//the status to complete 
+// clicking the 'restart task' will undo the changes
 function completeTask() {
     console.log('complete');
     let taskToUpdate = $(this).closest('tr').data('id');
@@ -90,18 +100,14 @@ function completeTask() {
     taskStatus = !taskStatus;
     console.log(taskStatus);
 
-
-
-
     $.ajax({
         method: 'PUT',
         url: `/tasks/${taskToUpdate}`,
         data: { taskStatus: taskStatus }
+    
     }).then(function (response) {
         getTasks();
-
-
-
+    
     }).catch(function (error) {
         console.log(error);
     })
